@@ -1,3 +1,9 @@
 language: csharp
 solution: CommandLineAnalyzer.sln
 mono: alpha
+before_install:
+  - mkdir -p .nuget
+  - wget -O .nuget/nuget.exe https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+  - mono .nuget/nuget.exe # Output NuGet's version number
+install:
+  - mono .nuget/nuget.exe restore CommandLineAnalyzer.sln -Verbosity detailed
